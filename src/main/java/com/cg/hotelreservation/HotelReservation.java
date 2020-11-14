@@ -17,8 +17,8 @@ public class HotelReservation {
         this.hotelInfos = hotelInfos;
     }
 
-    public void addNewHotel(String hotelName, int rate) {
-        hotelInfos.add(new HotelInfo(hotelName,rate));
+    public void addNewHotel(String hotelName, int rateWeekday, int rateWeekend) {
+        hotelInfos.add(new HotelInfo(hotelName,rateWeekday,rateWeekend));
     }
 
     public void findCheapestHotel(LocalDate start, LocalDate end) {
@@ -36,7 +36,7 @@ public class HotelReservation {
     }
 
     private int calculateRent(HotelInfo hotelInfo,int no_of_days) {
-        return hotelInfo.getRate()*no_of_days;
+        return hotelInfo.getRateWeekday()*no_of_days;
     }
 
     public String getCheapestHotel() {
@@ -46,4 +46,6 @@ public class HotelReservation {
     public int getHotelRate() {
         return hotelRate;
     }
+
+
 }

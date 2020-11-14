@@ -13,9 +13,9 @@ public class HotelReservationTest {
     @Test
     public void whenHotelAddedShouldMatchCount() {
         HotelReservation hotelReservation=new HotelReservation();
-        hotelReservation.addNewHotel("Lakewood",110);
-        hotelReservation.addNewHotel("Bridgewood",160);
-        hotelReservation.addNewHotel("Ridgewood",220);
+        hotelReservation.addNewHotel("Lakewood",110,90);
+        hotelReservation.addNewHotel("Bridgewood",160,50);
+        hotelReservation.addNewHotel("Ridgewood",220,150);
         ArrayList<HotelInfo> hotelInfos=hotelReservation.getHotelInfos();
         Assert.assertEquals(3,hotelInfos.size());
     }
@@ -23,9 +23,9 @@ public class HotelReservationTest {
     @Test
     public void givenDateRangeShouldReturnCheapestHotel() {
         HotelReservation hotelReservation=new HotelReservation();
-        hotelReservation.addNewHotel("Lakewood",110);
-        hotelReservation.addNewHotel("Bridgewood",160);
-        hotelReservation.addNewHotel("Ridgewood",220);
+        hotelReservation.addNewHotel("Lakewood",110,90);
+        hotelReservation.addNewHotel("Bridgewood",160,50);
+        hotelReservation.addNewHotel("Ridgewood",220,150);
         hotelReservation.findCheapestHotel(LocalDate.of(2020,11,11),
                                               LocalDate.of(2020,11,13));
 
