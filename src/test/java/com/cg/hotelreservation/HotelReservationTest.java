@@ -24,14 +24,14 @@ public class HotelReservationTest {
     public void givenDateRangeShouldReturnCheapestHotel() {
         HotelReservation hotelReservation=new HotelReservation();
         hotelReservation.addNewHotel("Lakewood",110,90);
-        hotelReservation.addNewHotel("Bridgewood",160,50);
+        hotelReservation.addNewHotel("Bridgewood",150,50);
         hotelReservation.addNewHotel("Ridgewood",220,150);
-        hotelReservation.findCheapestHotel(LocalDate.of(2020,11,11),
-                                              LocalDate.of(2020,11,13));
+        hotelReservation.findCheapestHotel(LocalDate.of(2020,11,13),
+                                              LocalDate.of(2020,11,14));
 
 
-       Assert.assertEquals("Lakewood",hotelReservation.getCheapestHotel());
-       Assert.assertEquals(330,hotelReservation.getHotelRate());
+       Assert.assertEquals("Lakewood Bridgewood ",hotelReservation.getCheapestHotel());
+       Assert.assertEquals(200,hotelReservation.getHotelRate());
 
     }
 }
