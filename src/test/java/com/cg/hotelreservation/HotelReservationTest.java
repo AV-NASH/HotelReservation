@@ -35,4 +35,19 @@ public class HotelReservationTest {
        Assert.assertEquals(4,hotelReservation.getHotelRating());
 
     }
+
+    @Test
+    public void givenDateRangeShouldReturnBestRatedHotel() {
+        HotelReservation hotelReservation=new HotelReservation();
+        hotelReservation.addNewHotel("Lakewood",110,90,3);
+        hotelReservation.addNewHotel("Bridgewood",150,50,4);
+        hotelReservation.addNewHotel("Ridgewood",220,150,5);
+        hotelReservation.findBestRatedHotel(LocalDate.of(2020,11,13),
+                LocalDate.of(2020,11,14));
+
+
+        Assert.assertEquals("Ridgewood",hotelReservation.getCheapestHotel());
+        Assert.assertEquals(370,hotelReservation.getHotelRate());
+        Assert.assertEquals(5,hotelReservation.getHotelRating());
+    }
 }

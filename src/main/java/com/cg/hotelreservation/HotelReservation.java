@@ -47,6 +47,17 @@ public class HotelReservation {
         return rent;
     }
 
+
+    public void findBestRatedHotel(LocalDate start, LocalDate end) {
+        Optional<HotelInfo> cheapesthotelOptionalObj=hotelInfos.stream().reduce((hotelInfo1, hotelInfo2) ->hotelInfo1.getRating()>hotelInfo2.getRating()?hotelInfo1:hotelInfo2);
+        HotelInfo cheapestHotelObj= cheapesthotelOptionalObj.get();
+        ArrayList<HotelInfo> cheapestHotelList=new ArrayList<HotelInfo>(hotelInfos.stream().filter(p->p.getRating()==cheapestHotelObj.getRating()).collect(Collectors.toList()));
+        cheapestHotel="";
+        cheapestHotelList.stream().forEach(p->cheapestHotel=cheapestHotel+p.getHotel_name());
+        hotelRate=calculateRent(cheapestHotelObj,start,end);
+        hotelRating=cheapestHotelObj.getRating();
+    }
+
     public String getCheapestHotel() {
         return cheapestHotel;
     }
