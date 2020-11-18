@@ -18,7 +18,7 @@ public class HotelReservation {
         this.hotelInfos = hotelInfos;
     }
 
-    public void addNewHotel(String hotelName, int rateWeekday, int rateWeekend) {
+    public void addNewHotel(String hotelName, int rateWeekday, int rateWeekend, int rating) {
         hotelInfos.add(new HotelInfo(hotelName,rateWeekday,rateWeekend));
     }
 
