@@ -9,6 +9,7 @@ public class HotelReservation {
     private ArrayList<HotelInfo> hotelInfos=new ArrayList<>();
     private String cheapestHotel;
     private  int hotelRate;
+    private  int hotelRating;
 
     public ArrayList<HotelInfo> getHotelInfos() {
         return hotelInfos;
@@ -19,20 +20,21 @@ public class HotelReservation {
     }
 
     public void addNewHotel(String hotelName, int rateWeekday, int rateWeekend, int rating) {
-        hotelInfos.add(new HotelInfo(hotelName,rateWeekday,rateWeekend));
+        hotelInfos.add(new HotelInfo(hotelName,rateWeekday,rateWeekend,rating));
     }
 
     public void findCheapestHotel(LocalDate start, LocalDate end) {
 
         Optional<HotelInfo> cheapesthotelOptionalObj=hotelInfos.stream().reduce((hotelInfo1, hotelInfo2) ->
-        calculateRent(hotelInfo1,start,end)<calculateRent(hotelInfo2,start,end)?hotelInfo1:hotelInfo2);
+                (calculateRent(hotelInfo1,start,end)<calculateRent(hotelInfo2,start,end)||(hotelInfo1.getRating()>hotelInfo2.getRating()&&calculateRent(hotelInfo1,start,end)<=calculateRent(hotelInfo2,start,end)))?hotelInfo1:hotelInfo2);
 
 
        HotelInfo cheapestHotelObj= cheapesthotelOptionalObj.get();
-       cheapestHotel="";
-      ArrayList<HotelInfo> cheapestHotelList=new ArrayList<>(hotelInfos.stream().filter(p->calculateRent(p,start,end)==calculateRent(cheapestHotelObj,start,end)).collect(Collectors.toList()));
-      cheapestHotelList.stream().forEach(p->cheapestHotel=cheapestHotel+p.getHotel_name()+" ");
+      ArrayList<HotelInfo> cheapestHotelList=new ArrayList<>(hotelInfos.stream().filter(p->((calculateRent(p,start,end)==calculateRent(cheapestHotelObj,start,end))&&(p.getRating()==cheapestHotelObj.getRating()))).collect(Collectors.toList()));
+      cheapestHotel="";
+      cheapestHotelList.stream().forEach(p->cheapestHotel=cheapestHotel+p.getHotel_name());
        hotelRate=calculateRent(cheapestHotelObj,start,end);
+       hotelRating=cheapestHotelObj.getRating();
     }
 
     private int calculateRent(HotelInfo hotelInfo,LocalDate start,LocalDate end) {
@@ -54,4 +56,7 @@ public class HotelReservation {
     }
 
 
+    public int getHotelRating() {
+        return hotelRating;
+    }
 }

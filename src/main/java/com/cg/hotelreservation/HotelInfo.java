@@ -48,4 +48,18 @@ public class HotelInfo {
     public void setRateWeekend(int rateWeekend) {
         this.rateWeekend = rateWeekend;
     }
+
+    public int getRating() {
+        return rating;
+    }
+
+    @Override
+    public String toString() {
+        return "HotelInfo{" +
+                "hotel_name='" + hotel_name + '\'' +
+                ", rateWeekday=" + rateWeekday +
+                ", rateWeekend=" + rateWeekend +
+                ", rating=" + rating +
+                '}';
+    }
 }

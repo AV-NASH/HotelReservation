@@ -30,8 +30,9 @@ public class HotelReservationTest {
                                               LocalDate.of(2020,11,14));
 
 
-       Assert.assertEquals("Lakewood Bridgewood ",hotelReservation.getCheapestHotel());
+       Assert.assertEquals("Bridgewood",hotelReservation.getCheapestHotel());
        Assert.assertEquals(200,hotelReservation.getHotelRate());
+       Assert.assertEquals(4,hotelReservation.getHotelRating());
 
     }
 }
