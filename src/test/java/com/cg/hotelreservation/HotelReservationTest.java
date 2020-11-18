@@ -21,7 +21,7 @@ public class HotelReservationTest {
     }
 
     @Test
-    public void givenDateRangeShouldReturnCheapestHotelForReward() throws InvalidCustomerTypeException, InvalidDateException {
+    public void givenDateRangeShouldReturnCheapestHotelForRegular() throws InvalidCustomerTypeException, InvalidDateException {
         HotelReservation hotelReservation=new HotelReservation();
         hotelReservation.addNewHotel("Lakewood",110,90,80,80,3);
         hotelReservation.addNewHotel("Bridgewood",150,50,110,50,4);
@@ -65,5 +65,20 @@ public class HotelReservationTest {
         hotelReservation.addNewHotel("Bridgewood",160,50,110,50,4);
         hotelReservation.addNewHotel("Ridgewood",220,150,100,40,5);
         hotelReservation.findBestRatedHotel("11-11-2020","2020-11-14","regular");
+    }
+
+    @Test
+    public void givenDateRangeShouldReturnCheapestHotelForReward() throws InvalidCustomerTypeException, InvalidDateException {
+        HotelReservation hotelReservation=new HotelReservation();
+        hotelReservation.addNewHotel("Lakewood",110,90,80,80,3);
+        hotelReservation.addNewHotel("Bridgewood",150,50,110,50,4);
+        hotelReservation.addNewHotel("Ridgewood",220,150,100,40,5);
+        hotelReservation.findCheapestHotel("2020-11-13","2020-11-14","reward");
+
+
+        Assert.assertEquals("Ridgewood",hotelReservation.getCheapestHotel());
+        Assert.assertEquals(140,hotelReservation.getHotelRate());
+        Assert.assertEquals(5,hotelReservation.getHotelRating());
+
     }
 }
