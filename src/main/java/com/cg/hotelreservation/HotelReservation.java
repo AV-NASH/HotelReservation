@@ -19,8 +19,8 @@ public class HotelReservation {
         this.hotelInfos = hotelInfos;
     }
 
-    public void addNewHotel(String hotelName, int rateWeekday, int rateWeekend, int rating) {
-        hotelInfos.add(new HotelInfo(hotelName,rateWeekday,rateWeekend,rating));
+    public void addNewHotel(String hotelName, int rateWeekday_regular, int rateWeekend_regular,int rateWeekday_reward, int rateWeekend_reward, int rating) {
+        hotelInfos.add(new HotelInfo(hotelName,rateWeekday_regular,rateWeekend_regular,rateWeekday_reward,rateWeekend_reward,rating));
     }
 
     public void findCheapestHotel(LocalDate start, LocalDate end) {
@@ -41,8 +41,8 @@ public class HotelReservation {
         int rent=0;
         for(LocalDate localDate=start;localDate.isBefore(end)||localDate.isEqual(end);localDate=localDate.plusDays(1)){
           if(localDate.getDayOfWeek().name().toLowerCase().equals("saturday")||localDate.getDayOfWeek().name().toLowerCase().equals("sunday"))
-              rent=rent+hotelInfo.getRateWeekend();
-          else rent=rent+hotelInfo.getRateWeekday();
+              rent=rent+hotelInfo.getRateWeekend_regular();
+          else rent=rent+hotelInfo.getRateWeekday_regular();
         }
         return rent;
     }
